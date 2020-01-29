@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.revdebug</groupId>
-	<artifactId>InvoicesCoreJava</artifactId>
+	<artifactId>revdebug-tutorial-spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>InvoicesCoreJava</name>
+	<name>revdebug-tutorial-spring</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
