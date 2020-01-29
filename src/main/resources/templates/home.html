@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <a href='/invoices'>
+                <img class="logoConstruction" src="../static/resources/images/InvoicesLogo.png" th:src="@{/resources/images/InvoicesLogo.png}" />
+            </a>
+            <h1>
+                This page is still under construction.<br />Please check out the <a href='/invoices'>
+                Invoices Tutorial </a>.
+            </h1>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+</body>
+
+</html>

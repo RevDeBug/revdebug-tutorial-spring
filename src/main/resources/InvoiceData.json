@@ -1,0 +1,116 @@
+{
+	"Products": [
+		{
+			"ProducId": "1",
+			"Label": "Nimbus2000",
+			"Description": "BroomStick",
+			"UnitPrice": [],
+			"Tax": "23"
+		},
+		{
+			"ProducId": "2",
+			"Label": "T100",
+			"Description": "Housework helping machine",
+			"UnitPrice": "5999",
+			"Tax": "10"
+		},
+		{
+			"ProducId": "3",
+			"Label": "The One Ring",
+			"Description": "Makes you dissappear",
+			"UnitPrice": "1999",
+			"Tax": "0"
+		},
+		{
+			"ProducId": "4",
+			"Label": "Volley ball",
+			"Description": "Wilson",
+			"UnitPrice": "19",
+			"Tax": "5"
+		},
+		{
+			"ProducId": "5",
+			"Label": "Mjolnir",
+			"Description": "Nailed it",
+			"UnitPrice": "12335",
+			"Tax": "15"
+		}
+	],
+	"Accounts": {
+		"Account": {
+			"AccountId": "1",
+			"FirstName": "Mark",
+			"LastName": "BugFixer"
+		}
+	},
+	"Invoices": [
+		{
+			"InvoiceId": "222/ST/",
+			"AccountId": "1"
+		},
+		{
+			"InvoiceId": "88/SU/05/",
+			"AccountId": "1"
+		},
+		{
+			"InvoiceId": "135/ST/GD/05/",
+			"AccountId": "1"
+		}
+	],
+	"InvoiceEntries": [
+		{
+			"InvoiceEntryId": "1",
+			"InvoiceId": "222/ST/",
+			"ProducId": "1",
+			"Quantity": "5"
+		},
+		{
+			"InvoiceEntryId": "2",
+			"InvoiceId": "222/ST/",
+			"ProducId": "2",
+			"Quantity": "20"
+		},
+		{
+			"InvoiceEntryId": "3",
+			"InvoiceId": "222/ST/",
+			"ProducId": "5",
+			"Quantity": "1"
+		},
+		{
+			"InvoiceEntryId": "4",
+			"InvoiceId": "88/SU/05/",
+			"ProducId": "3",
+			"Quantity": "7"
+		},
+		{
+			"InvoiceEntryId": "5",
+			"InvoiceId": "88/SU/05/",
+			"ProducId": "5",
+			"Quantity": "5"
+		},
+		{
+			"InvoiceEntryId": "6",
+			"InvoiceId": "88/SU/05/",
+			"ProducId": "4",
+			"Quantity": "8"
+		},
+		{
+			"InvoiceEntryId": "7",
+			"InvoiceId": "135/ST/GD/05/",
+			"ProducId": "2",
+			"Quantity": "10"
+		},
+		{
+			"InvoiceEntryId": "8",
+			"InvoiceId": "135/ST/GD/05/",
+			"ProducId": "3",
+			"Quantity": "1"
+		},
+		{
+			"InvoiceEntryId": "9",
+			"InvoiceId": "135/ST/GD/05/",
+			"ProducId": "4",
+			"Quantity": "50"
+		}
+	]
+}

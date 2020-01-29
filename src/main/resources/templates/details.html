@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+
+<body>
+<div class="col-lg-9">
+    <div class="body-content">
+        <div class="row">
+            <h2>Details</h2>
+            <h4 th:text="${invoice.InvoiceId}"><a class="help" href="#">help <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a></h4>
+        </div>
+        <div class="row">
+            <hr />
+            <table class="table tableInvoiceDetails">
+                <tr>
+                    <th th width="100">
+                        Contractor
+                    </th>
+                    <td th:text="${invoice.AccountId.FirstName + ' ' + invoice.AccountId.LastName}">
+                    </td>
+                    <th width="100">
+                        Issue Date
+                    </th>
+                    <td th:text="${invoice.IssueDate}" width="100">
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td></td>
+                    <th>
+                        Due Date
+                    </th>
+                    <td th:text="${invoice.DueDate}">
+                    </td>
+                </tr>
+            </table>
+            <table class="table tableProducts">
+                <thead>
+                <tr>
+                    <th>
+                        Product
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Unit Price
+                    </th>
+                    <th>
+                        Tax
+                    </th>
+                    <th>
+                        Gross Price
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${invoice.InvoiceEntries}">
+                    <td th:text="${item.ProductId.Label}"></td>
+                    <td th:text="${item.ProductId.Description}"></td>
+                    <td th:text="${'$ ' + item.ProductId.UnitPrice}"></td>
+                    <td th:text="${item.ProductId.Tax + ' %'}"></td>
+                    <td th:text="${'$ ' + item.Gross}"></td>
+                    <td th:text="${item.Quantity}"></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <th>Reconciled</th>
+                    <td th:text="${'$ ' + invoice.Reconciled}"></td>
+                    <td><a th:href="@{'/invoices/' + ${invoice.Number}} + '/reconsile/'">Reconcile</a></td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <th>Total Bill</th>
+                    <td th:text="${'$ ' + invoice.TotalBill}"></td>
+                    <td></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <p>
+            <button class="btn btn-default btnDetails btnBack" onclick="window.location.href='/invoices'"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>Back to list</button>
+        </p>
+    </div>
+</div>
+</body>
+
+</html>
