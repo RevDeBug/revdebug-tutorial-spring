@@ -81,7 +81,8 @@ public class InvoicesController {
 
 				if (product != null) {
 					productName = product.get("Label").toString();
-					unitPrice = Double.parseDouble(product.get("UnitPrice").toString());
+					String unitPriceString = product.get("UnitPrice").toString();
+					unitPrice = Double.parseDouble(unitPriceString);
 					taxRate = Integer.parseInt(product.get("Tax").toString());
 					tax = unitPrice * taxRate / 100;
 
