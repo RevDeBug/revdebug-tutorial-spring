@@ -131,12 +131,12 @@
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>compiler</artifactId>
-			<version>5.5.0</version>
+			<version>5.7.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>RevDeBug</artifactId>
-			<version>5.5.0</version>
+			<version>5.7.0</version>
 		</dependency>
 	</dependencies>
 
@@ -230,6 +230,20 @@
 				</dependencies>
 			</plugin>
 			<plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+				<version>4.0.0</version>
+				<executions>
+					<execution>
+						<id>get-the-git-infos</id>
+						<goals>
+							<goal>revision</goal>
+						</goals>
+						<phase>validate</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
@@ -240,8 +254,9 @@
 						<arg>-ArecordingMode=OnEvent</arg>
 						<arg>-AapplicationName=InvoiceJava</arg>
 						<arg>-AsolutionName=InvoiceJava</arg>
-						<arg>-ArepositoryPath=Metadata</arg>
+						<arg>-ArepositoryPath=target/Metadata</arg>
 						<arg>-AuploadMetadata=true</arg>
+						<arg>-AreleaseId=${git.commit.id}</arg>
 					</compilerArgs>
 					<source>1.8</source>
 					<target>1.8</target>
