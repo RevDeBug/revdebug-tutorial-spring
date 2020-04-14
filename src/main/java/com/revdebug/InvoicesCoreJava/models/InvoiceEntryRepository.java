@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface InvoiceEntryRepository extends Repository<InvoiceEntry, String> {
 
-	@Query(value = "SELECT inv FROM Invoices inv, Accounts cnt, Products prod, InvoiceEntries entr WHERE entr.InvoiceId = inv.InvoiceId AND entr.ProductId = prod.ProductId AND inv.AccountId = cnt.AccountId GROUP BY inv.InvoiceId")
+	@Query(value = "SELECT inv FROM Invoices inv, Accounts cnt, Products prod, InvoiceEntries entr WHERE entr.InvoiceId = inv.InvoiceId AND entr.ProductId = prod.ProductId AND inv.AccountId = cnt.AccountId GROUP BY inv.InvoiceId ORDER BY inv.InvoiceId")
 	List<Object> selectAll();
 
 }
