@@ -42,8 +42,13 @@ public class HomeController {
 
 	@GetMapping("/calculateval")
 	public String calculateval() {
-		int a = 6 / 0;
-		return "val";
+		int multiplier = 10;
+		int val = 0;
+		for (int i = 10; i >= 0;) {
+			val = val + multiplier / i;
+			i = i - 1;
+		}
+		return String.valueOf(val);
 	}
 
 }
