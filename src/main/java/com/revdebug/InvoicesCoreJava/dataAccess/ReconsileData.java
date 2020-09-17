@@ -77,4 +77,11 @@ public class ReconsileData {
 		return product;
 	}
 
+	@RevDeBug.Annotation.Exclude
+	public static void ProcessInvoice(String invoice) {
+		if (invoice == null || invoice.length() == 0) {
+			RevDeBug.Storage.getStorageApi().StoreSnapshot("invoiceSnapshot");
+		}
+	}
+
 }
