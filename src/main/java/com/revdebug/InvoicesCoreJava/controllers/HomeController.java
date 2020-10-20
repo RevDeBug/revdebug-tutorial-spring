@@ -62,7 +62,8 @@ public class HomeController {
 		java.util.ArrayList orderDetailsArray = (ArrayList) order.get("OrderDetails");
 		for (int no = 0; no < orderDetailsArray.size(); no++) {
 			LinkedHashMap orderDetails = (LinkedHashMap) orderDetailsArray.get(no);
-			if ((double) orderDetails.get("Discount") >= 100) {
+			double discount = (double) orderDetails.get("Discount");
+			if (discount >= 100) {
 				continue;
 			}
 
@@ -89,7 +90,7 @@ public class HomeController {
 			String invoiceString = invoice.toString();
 			ReconsileData.ProcessInvoice(invoiceString);
 			RestTemplate restTemplate = new RestTemplate();
-			String resourceUrl = "http://localhost:5300/Sender/Send?invoice=" + invoiceString;
+			String resourceUrl = System.getenv("InvoicesSenderAddress") + "/Sender/Send?invoice=" + invoiceString;
 			restTemplate.getForEntity(resourceUrl, String.class).getBody();
 		}
 		catch (Exception e) {
