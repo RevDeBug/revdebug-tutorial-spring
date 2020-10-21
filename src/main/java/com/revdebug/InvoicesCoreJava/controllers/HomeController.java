@@ -86,12 +86,10 @@ public class HomeController {
 			}
 
 		}
+		String invoiceData = invoice.toString();
 		try {
-			String invoiceString = invoice.toString();
-			ReconsileData.ProcessInvoice(invoiceString);
-			RestTemplate restTemplate = new RestTemplate();
-			String resourceUrl = System.getenv("InvoicesSenderAddress") + "/Sender/Send?invoice=" + invoiceString;
-			restTemplate.getForEntity(resourceUrl, String.class).getBody();
+			String resourceUrl = System.getenv("InvoicesSenderAddress") + "/Sender/Send?invoice=" + invoiceData;
+			new RestTemplate().getForEntity(resourceUrl, String.class).getBody();
 		}
 		catch (Exception e) {
 		}
