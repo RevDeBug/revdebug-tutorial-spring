@@ -136,12 +136,12 @@
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>compiler</artifactId>
-			<version>5.7.1</version>
+			<version>5.7.22</version>
 		</dependency>
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>RevDeBug</artifactId>
-			<version>5.7.1</version>
+			<version>5.7.22</version>
 		</dependency>
 	</dependencies>
 
