@@ -29,7 +29,7 @@
 		<repository>
 			<id>rdb-repo</id>
 			<name>RevDeBug Maven Repo</name>
-			<url>http://maven.revdebug.com</url>
+			<url>http://nexus.revdebug.com/repository/maven</url>
 		</repository>
 	</repositories>
 
@@ -136,12 +136,12 @@
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>compiler</artifactId>
-			<version>5.7.22</version>
+			<version>6.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>RevDeBug</artifactId>
-			<version>5.7.22</version>
+			<version>6.0.0</version>
 		</dependency>
 	</dependencies>
 
