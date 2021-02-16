@@ -29,7 +29,7 @@
 		<repository>
 			<id>rdb-repo</id>
 			<name>RevDeBug Maven Repo</name>
-			<url>http://maven.revdebug.com</url>
+			<url>http://nexus.revdebug.com/repository/maven</url>
 		</repository>
 	</repositories>
 
