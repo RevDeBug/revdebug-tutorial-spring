@@ -29,7 +29,7 @@
 		<repository>
 			<id>rdb-repo</id>
 			<name>RevDeBug Maven Repo</name>
-			<url>http://maven.revdebug.com</url>
+			<url>http://nexus.revdebug.com/repository/maven</url>
 		</repository>
 	</repositories>
 
@@ -131,34 +131,28 @@
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>compiler</artifactId>
-			<version>5.7.22</version>
+			<version>6.0.18</version>
 		</dependency>
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>RevDeBug</artifactId>
-			<version>5.7.22</version>
+			<version>6.0.18</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>io.spring.javaformat</groupId>
-				<artifactId>spring-javaformat-maven-plugin</artifactId>
-				<version>${spring-format.version}</version>
-				<!-- run ./mvnw spring-javaformat:apply to apply -->
-				<executions>
-					<execution>
-						<phase>validate</phase>
-						<goals>
-							<goal>validate</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!--https://docs.spring.io/spring-boot/docs/1.4.1.RELEASE/maven-plugin/examples/exclude-dependency.html-->
+					<excludes>
+						<exclude>
+							<groupId>com.revdebug</groupId>
+							<artifactId>compiler</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<!-- Spring Boot Actuator displays build-related information
@@ -264,5 +258,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
