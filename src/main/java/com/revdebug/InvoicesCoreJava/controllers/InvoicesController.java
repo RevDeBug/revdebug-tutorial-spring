@@ -39,8 +39,7 @@ public class InvoicesController {
         List<Object> InvoiceEntries = invoiceEntryRepository.selectAll();
 
         model.put("Invoices", InvoiceEntries);
-        throw new IllegalStateException();
-//		return "invoices";
+       	return "invoices";
     }
 
     @GetMapping("/invoices/{invoiceNumber}/details")
