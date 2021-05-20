@@ -92,20 +92,12 @@ public class InvoicesController {
                 double unitPrice;
                 int taxRate;
                 double tax;
-
-                if (product != null) {
-                    productName = product.Label;
-                    String unitPriceString = String.valueOf(product.UnitPrice);
-                    unitPrice = Double.parseDouble(unitPriceString);
-                    taxRate = (int)product.Tax;
-                    tax = unitPrice * taxRate / 100;
-
-                    reconsiled += (unitPrice + tax) * quantity;
-
-                } else {
-                    return reconsiled;
-                }
-
+                productName = product.Label;
+                String unitPriceString = String.valueOf(product.UnitPrice);
+                unitPrice = Double.parseDouble(unitPriceString);
+                taxRate = (int)product.Tax;
+                tax = unitPrice * taxRate / 100;
+                reconsiled += (unitPrice + tax) * quantity;
             }
         }
 

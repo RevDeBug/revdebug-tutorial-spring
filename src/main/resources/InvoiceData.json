@@ -61,7 +61,7 @@
 		{
 			"InvoiceEntryId": "1",
 			"InvoiceId": "222/ST/",
-			"ProducId": "1",
+			"ProducId": 999999,
 			"Quantity": "5"
 		},
 		{
