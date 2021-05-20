@@ -1,9 +1,8 @@
 package com.revdebug.InvoicesCoreJava.controllers;
 
+import com.google.common.collect.Lists;
 import com.revdebug.InvoicesCoreJava.dataAccess.ReconsileData;
-import com.revdebug.InvoicesCoreJava.models.Invoice;
-import com.revdebug.InvoicesCoreJava.models.InvoiceEntryRepository;
-import com.revdebug.InvoicesCoreJava.models.InvoiceRepository;
+import com.revdebug.InvoicesCoreJava.models.*;
 import com.revdebug.InvoicesCoreJava.services.ReconciliationCalculatorService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -27,11 +26,14 @@ public class InvoicesController {
 
     private final ReconciliationCalculatorService reconciliationCalculatorService;
 
+    private final ProductRepository productRepository;
+
     public InvoicesController(InvoiceRepository invoiceRepository, InvoiceEntryRepository invoiceEntryRepository,
-                              ReconciliationCalculatorService reconciliationCalculatorService) {
+                              ReconciliationCalculatorService reconciliationCalculatorService, ProductRepository productRepository) {
         this.invoiceRepository = invoiceRepository;
         this.invoiceEntryRepository = invoiceEntryRepository;
         this.reconciliationCalculatorService = reconciliationCalculatorService;
+        this.productRepository = productRepository;
     }
 
     @GetMapping("/invoices")
@@ -72,46 +74,30 @@ public class InvoicesController {
     private double CalculateReconcilation(String id) {
         double reconsiled = 0;
 
+        List<Product> allProducts = Lists.newArrayList(productRepository.findAll());
+
         ReconsileData reconsileData = new ReconsileData("InvoiceData.json");
         JSONArray invoiceEntries = reconsileData.getInvoiceEntriesByInvoiceId(id);
 
-        RestTemplate restTemplate = new RestTemplate();
-        String resourceUrl = System.getenv("InvoicesCoreAddress") + "/Products/all";
-        String response = restTemplate.getForEntity(resourceUrl, String.class).getBody();
-
         JSONParser parser = new JSONParser();
         JSONArray productsArray = null;
-        try {
-            productsArray = (JSONArray) parser.parse(response);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
         for (Object item : invoiceEntries) {
             if (item instanceof JSONObject) {
                 int quantity = Integer.parseInt(((JSONObject) item).get("Quantity").toString());
                 int productId = Integer.parseInt(((JSONObject) item).get("ProducId").toString());
 
-                JSONObject product = null;
-                for (Object prod : productsArray) {
-                    if (prod instanceof JSONObject) {
-                        int prodId = Integer.parseInt(((JSONObject) prod).get("ProductId").toString());
-                        if (prodId == productId) {
-                            product = (JSONObject) prod;
-                        }
-                    }
-                }
-
+                Product product = allProducts.stream().filter(p -> p.ProductId==productId).findFirst().orElse(null);
                 String productName;
                 double unitPrice;
                 int taxRate;
                 double tax;
 
                 if (product != null) {
-                    productName = product.get("Label").toString();
-                    String unitPriceString = product.get("UnitPrice").toString();
+                    productName = product.Label;
+                    String unitPriceString = String.valueOf(product.UnitPrice);
                     unitPrice = Double.parseDouble(unitPriceString);
-                    taxRate = Integer.parseInt(product.get("Tax").toString());
+                    taxRate = (int)product.Tax;
                     tax = unitPrice * taxRate / 100;
 
                     reconsiled += (unitPrice + tax) * quantity;
