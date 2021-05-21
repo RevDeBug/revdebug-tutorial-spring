@@ -19,7 +19,7 @@ Where *[revdebug_server_address]* is your RevDeBug server address (IP address or
 ## Run the built Docker image
 
 ```
-docker run -d -p 8080:8080 -e SW_AGENT_COLLECTOR_BACKEND_SERVICES=[revdebug_server_address] --name rdb_java_demo rdb_java_demo:latest
+docker run -d -p 8080:8080 -e SW_AGENT_COLLECTOR_BACKEND_SERVICES=[revdebug_server_address]:11800 --name rdb_java_demo rdb_java_demo:latest
 ```
 
 Where *[revdebug_server_address]* is your RevDeBug server address (IP address or just the hostname).
