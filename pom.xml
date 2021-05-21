@@ -242,7 +242,7 @@
 				<version>3.8.1</version>
 				<configuration>
 					<compilerArgs>
-						<arg>-ArecordServerAddress=crash-reports.revdebug.com</arg>
+						<arg>-ArecordServerAddress=${env.REVDEBUG_RECORD_SERVER_ADDRESS}</arg>
 						<arg>-ArecordServerPort=42734</arg>
 						<arg>-ArecordingMode=OnEvent</arg>
 						<arg>-AapplicationName=InvoiceJava</arg>
