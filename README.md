@@ -8,21 +8,75 @@ git clone https://github.com/RevDeBug/revdebug-tutorial-spring
 cd revdebug-tutorial-spring
 ```
 
-## Build the application using the included Dockerfile
+## Add RevDeBug dependencies in pom.xml
 
 ```
-docker build --build-arg REVDEBUG_RECORD_SERVER_ADDRESS_ARG=[revdebug_server_address] -t rdb_java_demo .
+		<!-- RevDeBug -->
+		<dependency>
+			<groupId>com.revdebug</groupId>
+			<artifactId>compiler</artifactId>
+			<version>6.0.19</version>
+		</dependency>
+		<dependency>
+			<groupId>com.revdebug</groupId>
+			<artifactId>RevDeBug</artifactId>
+			<version>6.0.19</version>
+		</dependency>
 ```
 
-Where *[revdebug_server_address]* is your RevDeBug server address (IP address or just the hostname).
+Dependency version will be updated however you can check if theres never version on https://nexus.revdebug.com/#browse/browse:maven:com%2Frevdebug%2FRevDeBug
 
-## Run the built Docker image
+## Add RevDeBug configuration in maven-compiler-plugin
 
 ```
-docker run -d -p 8080:8080 -e SW_AGENT_COLLECTOR_BACKEND_SERVICES=[revdebug_server_address]:11800 --name rdb_java_demo rdb_java_demo:latest
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<compilerArgs>
+						<arg>-ArecordServerAddress=${env.REVDEBUG_RECORD_SERVER_ADDRESS}</arg>
+						<arg>-ArecordServerPort=42734</arg>
+						<arg>-ArecordingMode=OnEvent</arg>
+						<arg>-AapplicationName=InvoiceJava</arg>
+						<arg>-AsolutionName=InvoiceJava</arg>
+						<arg>-ArepositoryPath=target/Metadata</arg>
+						<arg>-AuploadMetadata=true</arg>
+						<arg>-AreleaseId=${git.commit.id}</arg>
+					</compilerArgs>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+```
+Change -ArecordServerAddress to point to your devops monitor instance (just ip address or hostname without protocol)
+
+Remember, if you already have this plugin defined for some reason in your application just provide the compilerArgs section
+
+## Download and configure RevDeBug agent
+
+### Download https://nexus.revdebug.com/repository/files/agent/revdebug-agent-6.0.15.tar.gz
+
+### Extract it in location convenient for you (you will the use it on application startup)
+
+### Modify config/agent.config
+
+Change agent.service_name=${SW_AGENT_NAME:Your_ApplicationName} on line 21 e.g.
+agent.service_name=${SW_AGENT_NAME:revdebug-tutorial-spring}
+
+Change collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:127.0.0.1:11800} on line 74 to point to your devops monitor instance
+
+## Build application
+
+```
+\revdebug-tutorial-spring> ./mvnw package
 ```
 
-Where *[revdebug_server_address]* is your RevDeBug server address (IP address or just the hostname).
+## run application
+
+```
+\revdebug-tutorial-spring> ./mvnw package
+```
 
 ## Use the application to cause its error
 
