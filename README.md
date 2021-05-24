@@ -69,14 +69,16 @@ Change collector.backend_service=${SW_AGENT_COLLECTOR_BACKEND_SERVICES:127.0.0.1
 ## Build application
 
 ```
-\revdebug-tutorial-spring> ./mvnw package
+\revdebug-tutorial-spring> ./mvnw clean package
 ```
 
 ## run application
 
 ```
-\revdebug-tutorial-spring> ./mvnw package
+\revdebug-tutorial-spring\target>  java -javaagent:.\[path-to-agent]\skywalking-agent.jar -jar .\revdebug-tutorial-spring-0.0.1-SNAPSHOT.jar
 ```
+
+Change path-to-agent to the directory you extracted agent to  
 
 ## Use the application to cause its error
 
