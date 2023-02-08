@@ -14,7 +14,7 @@ cd revdebug-tutorial-spring
 docker build --build-arg REVDEBUG_RECORD_SERVER_ADDRESS_ARG=[revdebug_server_address] -t rdb_java_demo .
 ```
 
-Where [revdebug_server_address] is your RevDeBug server address (IP address or just the hostname). If you use TLS on your RevDeBug server, you need to add the ```--build-arg REVDEBUG_TLS=true``` variable.
+Where ```[revdebug_server_address]``` is your RevDeBug server address (IP address or just the hostname). If you are using TLS on your RevDeBug server, add the ```--build-arg REVDEBUG_TLS=true``` variable.
 
 ## Run the built Docker image
 
