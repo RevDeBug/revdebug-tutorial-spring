@@ -14,15 +14,13 @@ cd revdebug-tutorial-spring
 docker build --build-arg REVDEBUG_RECORD_SERVER_ADDRESS_ARG=[revdebug_server_address] -t rdb_java_demo .
 ```
 
-Where *[revdebug_server_address]* is your RevDeBug server address (IP address or just the hostname).
+Where [revdebug_server_address] is your RevDeBug server address (IP address or just the hostname). If you use TLS on your RevDeBug server, you need to add the [--build-arg REVDEBUG_TLS=true] variable.
 
 ## Run the built Docker image
 
 ```
-docker run -d -p 8080:8080 -e SW_AGENT_COLLECTOR_BACKEND_SERVICES=[revdebug_server_address]:11800 --name rdb_java_demo rdb_java_demo:latest
+docker run -d -p 8080:8080 --name rdb_java_demo rdb_java_demo:latest
 ```
-
-Where *[revdebug_server_address]* is your RevDeBug server address (IP address or just the hostname).
 
 ## Use the application to cause its error
 
