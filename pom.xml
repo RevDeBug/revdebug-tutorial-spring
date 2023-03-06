@@ -29,7 +29,7 @@
 		<repository>
 			<id>rdb-repo</id>
 			<name>RevDeBug Maven Repo</name>
-			<url>http://nexus.revdebug.com/repository/maven</url>
+			<url>http://nexus.revdebug.com/repository/maven-test</url>
 		</repository>
 	</repositories>
 
@@ -134,14 +134,14 @@
 		<!-- RevDeBug -->
 		<dependency>
 			<groupId>com.revdebug</groupId>
-			<artifactId>compiler</artifactId>
-			<version>6.7.2</version>
+			<artifactId>revdebug-compiler</artifactId>
+			<version>6.9.0-SNAPSHOT-1677766117</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.revdebug</groupId>
-			<artifactId>RevDeBug</artifactId>
-			<version>6.7.2</version>
+			<artifactId>revdebug-runtime</artifactId>
+			<version>6.9.0-SNAPSHOT-1677766117</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -154,7 +154,7 @@
 					<excludes>
 						<exclude>
 							<groupId>com.revdebug</groupId>
-							<artifactId>compiler</artifactId>
+							<artifactId>revdebug-compiler</artifactId>
 						</exclude>
 					</excludes>
 				</configuration>
@@ -248,6 +248,7 @@
 				<version>3.8.1</version>
 				<configuration>
 					<compilerArgs>
+						<arg>-Xplugin:RevDeBugCompiler</arg>
 						<arg>-ArecordServerAddress=${env.REVDEBUG_RECORD_SERVER_ADDRESS}</arg>
 						<arg>-ArecordServerPort=42734</arg>
 						<arg>-ArecordingMode=OnEvent</arg>
@@ -255,7 +256,6 @@
 						<arg>-AsolutionName=InvoiceJava</arg>
 						<arg>-ArepositoryPath=target/Metadata</arg>
 						<arg>-AuploadMetadata=true</arg>
-						<arg>-AreleaseId=${git.commit.id}</arg>
 						<arg>-AforceTLS=${env.REVDEBUG_TLS}</arg>
 					</compilerArgs>
 					<source>1.8</source>
