@@ -29,7 +29,7 @@
 		<repository>
 			<id>rdb-repo</id>
 			<name>RevDeBug Maven Repo</name>
-			<url>http://nexus.revdebug.com/repository/maven-test</url>
+			<url>https://release.revdebug.com/repository/maven</url>
 		</repository>
 	</repositories>
 
@@ -135,13 +135,13 @@
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>revdebug-compiler</artifactId>
-			<version>6.9.0-SNAPSHOT-1677766117</version>
+			<version>7.0.2</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>revdebug-runtime</artifactId>
-			<version>6.9.0-SNAPSHOT-1677766117</version>
+			<version>7.0.2</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -249,14 +249,12 @@
 				<configuration>
 					<compilerArgs>
 						<arg>-Xplugin:RevDeBugCompiler</arg>
-						<arg>-ArecordServerAddress=${env.REVDEBUG_RECORD_SERVER_ADDRESS}</arg>
-						<arg>-ArecordServerPort=42734</arg>
-						<arg>-ArecordingMode=OnEvent</arg>
-						<arg>-AapplicationName=InvoiceJava</arg>
-						<arg>-AsolutionName=InvoiceJava</arg>
-						<arg>-ArepositoryPath=target/Metadata</arg>
-						<arg>-AuploadMetadata=true</arg>
-						<arg>-AforceTLS=${env.REVDEBUG_TLS}</arg>
+						<arg>-AREVDEBUG_SERVER_HOSTNAME=${env.REVDEBUG_RECORD_SERVER_ADDRESS}</arg>
+						<arg>-AREVDEBUG_APPLICATION_NAME=InvoiceJava</arg>
+						<arg>-AREVDEBUG_SOLUTION_NAME=InvoiceJava</arg>
+						<arg>-AREVDEBUG_METADATA_PATH=target/Metadata</arg>
+						<arg>-AREVDEBUG_UPLOAD_METADATA=true</arg>
+						<arg>-AREVDEBUG_SECURE_CONNECTION=${env.REVDEBUG_TLS}</arg>
 					</compilerArgs>
 					<source>1.8</source>
 					<target>1.8</target>
