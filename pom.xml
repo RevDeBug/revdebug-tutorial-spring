@@ -250,10 +250,6 @@
 					<compilerArgs>
 						<arg>-Xplugin:RevDeBugCompiler</arg>
 						<arg>-AREVDEBUG_SERVER_HOSTNAME=${env.REVDEBUG_RECORD_SERVER_ADDRESS}</arg>
-						<arg>-AREVDEBUG_APPLICATION_NAME=InvoiceJava</arg>
-						<arg>-AREVDEBUG_SOLUTION_NAME=InvoiceJava</arg>
-						<arg>-AREVDEBUG_METADATA_PATH=target/Metadata</arg>
-						<arg>-AREVDEBUG_UPLOAD_METADATA=true</arg>
 						<arg>-AREVDEBUG_SECURE_CONNECTION=${env.REVDEBUG_TLS}</arg>
 					</compilerArgs>
 					<source>1.8</source>
