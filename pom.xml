@@ -135,13 +135,13 @@
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>revdebug-compiler</artifactId>
-			<version>7.0.2</version>
+			<version>7.0.10</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.revdebug</groupId>
 			<artifactId>revdebug-runtime</artifactId>
-			<version>7.0.2</version>
+			<version>7.0.10</version>
 		</dependency>
 	</dependencies>
 	<build>
